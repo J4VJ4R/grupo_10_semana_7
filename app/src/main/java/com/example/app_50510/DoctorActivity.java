@@ -40,7 +40,7 @@ public class DoctorActivity extends AppCompatActivity {
 
     private void inicializar_componentes(){
         txtName = findViewById(R.id.txtName);
-        txtId = findViewById(R.id.txtId);
+        txtId = findViewById(R.id.txtIdentification);
         txtSpeciality = findViewById(R.id.txtSpeciality);
         btnRegister = findViewById(R.id.btnRegister);
         objUser = new ModelDoctor();

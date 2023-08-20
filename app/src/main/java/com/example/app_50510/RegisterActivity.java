@@ -11,8 +11,11 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText txtName;
-    private EditText txtId;
-    private EditText txtBirthDady;
+    private EditText txtLastname;
+    private EditText txtIdentification;
+    private EditText txtPhone;
+    private EditText txtDate;
+    private EditText txtDoctor;
 
     private  ModelUser objUser;
     private Button btnRegister;
@@ -39,8 +42,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void inicializar_componentes(){
         txtName = findViewById(R.id.txtName);
-        txtId = findViewById(R.id.txtId);
-        txtBirthDady = findViewById(R.id.txtBirthDay);
+        txtLastname = findViewById(R.id.txtLastname);
+        txtIdentification = findViewById(R.id.txtIdentification);
+        txtPhone = findViewById(R.id.txtPhone);
+        txtDate = findViewById(R.id.txtDate);
+        txtDoctor = findViewById(R.id.txtDoctor);
         btnRegister = findViewById(R.id.btnRegister);
         objUser = new ModelUser();
         objBase = new AdministratorSQL();
@@ -48,8 +54,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private  void stablishUser(){
         objUser.setName(txtName.getText().toString());
-        objUser.setId(Integer.parseInt(txtId.getText().toString()));
-        objUser.setBirthDay(txtBirthDady.getText().toString());
+        objUser.setLastname(txtLastname.getText().toString());
+        objUser.setIdentification(txtIdentification.toString());
+        objUser.setPhone(txtPhone.getText().toString());
+        objUser.setDate(txtDate.getText().toString());
+        objUser.setDoctor(txtDoctor.getText().toString());
     }
 
 }

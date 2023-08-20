@@ -3,7 +3,11 @@ package com.example.app_50510;
 public class ModelUser {
     private  String name;
     private int id;
-    private String birthDay;
+    private String lastname;
+    private String identification;
+    private String phone;
+    private String date;
+    private String doctor;
 
     public String getName() {
         return name;
@@ -21,11 +25,43 @@ public class ModelUser {
         this.id = id;
     }
 
-    public String getBirthDay() {
-        return birthDay;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
     }
 }
