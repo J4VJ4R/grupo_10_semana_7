@@ -16,6 +16,9 @@
             android:name=".ConsultActivity"
             android:exported="false" />
         <activity
+            android:name=".ConsultActivity2"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

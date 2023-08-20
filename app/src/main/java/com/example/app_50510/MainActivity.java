@@ -1,53 +1,48 @@
 package com.example.app_50510;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText txtName;
-    private EditText txtId;
-    private EditText txtBirthDady;
 
-    private  ModelUser objUser;
-    private Button btnRegister;
-    private AdministratorSQL objBase;
+    private Button btnConsultMain;
+    private Button btnRegistertMain;
+    private Button btnDoctorsMain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        inicializar_componentes();
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnConsultMain = findViewById(R.id.btnConsultMain);
+        btnRegistertMain = findViewById(R.id.btnRegisterMain);
+        btnDoctorsMain = findViewById(R.id.btnDoctorsMain);
+
+        btnConsultMain.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                stablishUser();
-                boolean confirm = objBase.connectSQL();
-                if(confirm){
-                    Toast.makeText(MainActivity.this, "Succesfully connection", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this, "Fail connection", Toast.LENGTH_SHORT).show();
-                }
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, ConsultActivity2.class);
+                startActivity(i);
             }
         });
-    }
-
-    private void inicializar_componentes(){
-        txtName = findViewById(R.id.txtName);
-        txtId = findViewById(R.id.txtId);
-        txtBirthDady = findViewById(R.id.txtBirthDay);
-        btnRegister = findViewById(R.id.btnRegister);
-        objUser = new ModelUser();
-        objBase = new AdministratorSQL();
-    }
-
-    private  void stablishUser(){
-        objUser.setName(txtName.getText().toString());
-        objUser.setId(Integer.parseInt(txtId.getText().toString()));
-        objUser.setBirthDay(txtBirthDady.getText().toString());
+        btnRegistertMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(i);
+            }
+        });
+        btnDoctorsMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, ConsultActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
