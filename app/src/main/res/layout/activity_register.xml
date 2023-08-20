@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBirthDay"
+        app:layout_constraintTop_toBottomOf="@+id/txtDoctor"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
@@ -38,12 +38,13 @@
         android:id="@+id/txtBirthDay"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="Ingrese fecha de cita"
         android:inputType="date"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2"
-        tools:layout_editor_absoluteX="51dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
 
     <EditText
         android:id="@+id/txtId"
@@ -53,8 +54,9 @@
         android:ems="10"
         android:hint="Ingrese su identificación"
         android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/txtSpeciality"
-        tools:layout_editor_absoluteX="51dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastname" />
 
     <TextView
         android:id="@+id/textView"
@@ -68,37 +70,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtSpeciality"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtLastname"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Ingrese su apellido"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@+id/txtName"
-        tools:layout_editor_absoluteX="51dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtPhone"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Ingrese su teléfono"
         android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/txtId"
-        tools:layout_editor_absoluteX="55dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtId" />
 
     <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:id="@+id/txtDoctor"
+        android:layout_width="299dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="Ingrese nombre de doctor"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
-        tools:layout_editor_absoluteX="55dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBirthDay" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
