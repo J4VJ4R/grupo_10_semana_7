@@ -1,16 +1,20 @@
 package com.example.app_50510;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.example.app_50510.setup.ServiceLocator;
@@ -23,18 +27,21 @@ import grupo10.medicalappointments.model.entities.Doctor;
 import grupo10.medicalappointments.model.entities.MedicalAppointment;
 import grupo10.medicalappointments.model.repositories.DoctorsRepository;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private EditText txtName;
     private EditText txtLastname;
     private EditText txtIdentification;
     private EditText txtPhone;
     private EditText txtDate;
-    private Spinner txtDoctor;
+
+    private Spinner doctorSpinner;
 
     private MedicalAppointment objUser;
+
+    private Doctor selectedDoctor;
+
     private Button btnRegister;
-    private AdministratorSQL objBase;
 
     private DoctorsRepository doctorsRepository = ServiceLocator.getInstance().getDoctorsRepository();
 
@@ -44,44 +51,60 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         inicializar_componentes();
 
-        ArrayAdapter<Doctor> adapter =new ArrayAdapter(
-                this,
-                R.layout.activity_register,
-                doctorsRepository.getAll().toArray(Doctor[]::new)
-        );
-        adapter.setDropDownViewResource(R.layout.activity_register);
+        Doctor[] doctors = doctorsRepository.getAll().toArray(Doctor[]::new);
 
-        txtDoctor.setAdapter(adapter);
+        ArrayAdapter<Doctor> doctorArrayAdapter = new ArrayAdapter<>(
+                this,
+                com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+                doctors
+        );
+        doctorArrayAdapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
+
+        doctorSpinner.setAdapter(doctorArrayAdapter);
+        doctorSpinner.setOnItemSelectedListener(this);
 
         btnRegister.setOnClickListener(v -> {
-            //stablishUser();
-            boolean confirm = objBase.connectSQL();
-            if(confirm){
+            try {
+                stablishUser();
                 Toast.makeText(RegisterActivity.this, "Succesfully connection", Toast.LENGTH_SHORT).show();
-            }else{
+            } catch (Exception e) {
                 Toast.makeText(RegisterActivity.this, "Fail connection", Toast.LENGTH_SHORT).show();
+                System.out.println(e.getMessage());
             }
         });
+        btnRegister.setEnabled(selectedDoctor != null);
     }
 
-    private void inicializar_componentes(){
+    private void inicializar_componentes() {
         txtName = findViewById(R.id.txtName);
         txtLastname = findViewById(R.id.txtLastname);
         txtIdentification = findViewById(R.id.txtIdentification);
         txtPhone = findViewById(R.id.txtPhone);
         txtDate = findViewById(R.id.txtDate);
-        txtDoctor = findViewById(R.id.txtDoctor);
         btnRegister = findViewById(R.id.btnRegister);
+        doctorSpinner = findViewById(R.id.spinnerDoctor);
+
         objUser = new MedicalAppointment();
-        objBase = new AdministratorSQL();
     }
 
-    private  void stablishUser(){
+    private void stablishUser() {
         objUser.setName(txtName.getText().toString());
         objUser.setLastname(txtLastname.getText().toString());
         objUser.setIdentification(txtIdentification.toString());
         objUser.setPhone(txtPhone.getText().toString());
         objUser.setDate(String.valueOf(Date.valueOf(txtDate.getText().toString())));
-        objUser.setDoctor(Integer.parseInt(txtDoctor.getPrompt().toString()));
+        objUser.setDoctor(selectedDoctor.getId());
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        selectedDoctor = (Doctor) adapterView.getSelectedItem();
+        btnRegister.setEnabled(selectedDoctor != null);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        selectedDoctor = null;
+        btnRegister.setEnabled(selectedDoctor != null);
     }
 }

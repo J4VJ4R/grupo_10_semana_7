@@ -1,5 +1,7 @@
 package grupo10.medicalappointments.model.entities;
 
+import androidx.annotation.NonNull;
+
 public class Doctor {
     private int id;
     private String name;
@@ -27,5 +29,11 @@ public class Doctor {
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name + " (" + specialty + ")";
     }
 }
