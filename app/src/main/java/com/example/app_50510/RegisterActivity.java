@@ -11,6 +11,8 @@ import android.widget.Toast;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import grupo10.medicalappointments.model.entities.MedicalAppointment;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText txtName;
@@ -20,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText txtDate;
     private EditText txtDoctor;
 
-    private  ModelUser objUser;
+    private MedicalAppointment objUser;
     private Button btnRegister;
     private AdministratorSQL objBase;
     @Override
@@ -51,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         txtDate = findViewById(R.id.txtDate);
         txtDoctor = findViewById(R.id.txtDoctor);
         btnRegister = findViewById(R.id.btnRegister);
-        objUser = new ModelUser();
+        objUser = new MedicalAppointment();
         objBase = new AdministratorSQL();
     }
 

@@ -7,6 +7,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_50510.setup.ServiceLocator;
+
+import grupo10.medicalappointments.model.repositories.memory.DoctorsRepository_Memory;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btnConsultMain;
@@ -22,26 +26,19 @@ public class MainActivity extends AppCompatActivity {
         btnRegistertMain = findViewById(R.id.btnRegisterMain);
         btnDoctorsMain = findViewById(R.id.btnDoctorsMain);
 
-        btnConsultMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, ConsultActivity.class);
-                startActivity(i);
-            }
+        btnConsultMain.setOnClickListener((view) -> {
+            Intent i = new Intent(MainActivity.this, ConsultActivity.class);
+            startActivity(i);
         });
-        btnRegistertMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(i);
-            }
+
+        btnRegistertMain.setOnClickListener((view) -> {
+            Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(i);
         });
-        btnDoctorsMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, DoctorActivity.class);
-                startActivity(i);
-            }
+
+        btnDoctorsMain.setOnClickListener((view) -> {
+            Intent i = new Intent(MainActivity.this, DoctorActivity.class);
+            startActivity(i);
         });
     }
 }

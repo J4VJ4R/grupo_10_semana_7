@@ -1,6 +1,6 @@
-package com.example.app_50510;
+package grupo10.medicalappointments.model.entities;
 
-public class ModelUser {
+public class MedicalAppointment {
     private  String name;
     private int id;
     private String lastname;

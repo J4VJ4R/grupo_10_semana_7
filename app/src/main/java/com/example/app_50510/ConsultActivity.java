@@ -8,12 +8,14 @@ package com.example.app_50510;
         import android.widget.EditText;
         import android.widget.Toast;
 
+        import grupo10.medicalappointments.model.entities.MedicalAppointment;
+
 public class ConsultActivity extends AppCompatActivity {
     private EditText txtName;
     private EditText txtIdentification;
     private EditText txtDate;
 
-    private  ModelUser objUser;
+    private MedicalAppointment objUser;
     private Button btnRegister;
     private AdministratorSQL objBase;
     @Override
@@ -41,7 +43,7 @@ public class ConsultActivity extends AppCompatActivity {
         txtIdentification = findViewById(R.id.txtIdentification);
         txtDate = findViewById(R.id.txtDate);
         btnRegister = findViewById(R.id.btnRegister);
-        objUser = new ModelUser();
+        objUser = new MedicalAppointment();
         objBase = new AdministratorSQL();
     }
 
