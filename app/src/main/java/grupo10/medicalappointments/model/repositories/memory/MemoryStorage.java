@@ -26,4 +26,8 @@ final class MemoryStorage {
         appointment.setId(lastAppointmentId);
         MEDICAL_APPOINTMENT_LIST.add(appointment);
     }
+
+    public static Collection<MedicalAppointment> getAllMedicalAppointments() {
+        return MEDICAL_APPOINTMENT_LIST;
+    }
 }
