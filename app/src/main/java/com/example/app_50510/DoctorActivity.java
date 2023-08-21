@@ -40,7 +40,6 @@ public class DoctorActivity extends AppCompatActivity {
 
     private void inicializar_componentes(){
         txtName = findViewById(R.id.txtName);
-        txtId = findViewById(R.id.txtIdentification);
         txtSpeciality = findViewById(R.id.txtSpeciality);
         btnRegister = findViewById(R.id.btnRegister);
         objUser = new ModelDoctor();
@@ -49,7 +48,6 @@ public class DoctorActivity extends AppCompatActivity {
 
     private  void stablishUser(){
         objUser.setName(txtName.getText().toString());
-        objUser.setId(Integer.parseInt(txtId.getText().toString()));
         objUser.setSpecialty(txtSpeciality.getText().toString());
     }
 }

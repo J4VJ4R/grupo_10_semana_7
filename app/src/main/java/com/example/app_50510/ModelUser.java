@@ -7,7 +7,7 @@ public class ModelUser {
     private String identification;
     private String phone;
     private String date;
-    private String doctor;
+    private int doctor;
 
     public String getName() {
         return name;
@@ -53,15 +53,16 @@ public class ModelUser {
         return date;
     }
 
-    public void setDate(String date) {
+    public String setDate(String date) {
         this.date = date;
+        return date;
     }
 
-    public String getDoctor() {
+    public int getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(String doctor) {
+    public void setDoctor(int doctor) {
         this.doctor = doctor;
     }
 }

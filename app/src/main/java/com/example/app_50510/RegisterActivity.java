@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText txtName;
@@ -29,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stablishUser();
+                //stablishUser();
                 boolean confirm = objBase.connectSQL();
                 if(confirm){
                     Toast.makeText(RegisterActivity.this, "Succesfully connection", Toast.LENGTH_SHORT).show();
@@ -57,8 +60,8 @@ public class RegisterActivity extends AppCompatActivity {
         objUser.setLastname(txtLastname.getText().toString());
         objUser.setIdentification(txtIdentification.toString());
         objUser.setPhone(txtPhone.getText().toString());
-        objUser.setDate(txtDate.getText().toString());
-        objUser.setDoctor(txtDoctor.getText().toString());
+        objUser.setDate(String.valueOf(Date.valueOf(txtDate.getText().toString())));
+        objUser.setDoctor(Integer.parseInt(txtDoctor.getText().toString()));
     }
 
 }

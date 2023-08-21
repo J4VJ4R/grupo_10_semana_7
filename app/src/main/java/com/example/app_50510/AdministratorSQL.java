@@ -1,5 +1,6 @@
 package com.example.app_50510;
 
+import android.os.StrictMode;
 import android.util.Log;
 
 import java.sql.Connection;
@@ -14,6 +15,8 @@ public class AdministratorSQL {
 
     public boolean connectSQL(){
         try{
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
             objConnection = DriverManager.getConnection(url, user, passw);
             return  true;
         }catch (Exception ex){
