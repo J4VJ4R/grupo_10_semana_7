@@ -47,6 +47,8 @@ public class DoctorActivity extends AppCompatActivity {
         txtName.setText("");
         txtSpeciality.setText("");
         doctor = new Doctor();
+
+        txtName.requestFocus();
     }
 
     private void inicializar_componentes(){
