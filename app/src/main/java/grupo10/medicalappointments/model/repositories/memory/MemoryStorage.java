@@ -1,6 +1,7 @@
 package grupo10.medicalappointments.model.repositories.memory;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import grupo10.medicalappointments.model.entities.Doctor;
@@ -15,6 +16,10 @@ final class MemoryStorage {
     public  static void addDoctor(Doctor doctor){
         doctor.setId(lastDoctorId++);
         DOCTOR_LIST.add(doctor);
+    }
+
+    public static Collection<Doctor> getAllDoctors() {
+        return DOCTOR_LIST;
     }
 
     public  static void addMedicalAppointment(MedicalAppointment appointment) {
