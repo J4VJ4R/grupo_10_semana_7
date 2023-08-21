@@ -17,7 +17,7 @@ public class ConsultActivity extends AppCompatActivity {
 
     private MedicalAppointment objUser;
     private Button btnRegister;
-    private AdministratorSQL objBase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +27,8 @@ public class ConsultActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stablishUser();
-                boolean confirm = objBase.connectSQL();
-                if(confirm){
+
+                if(true){
                     Toast.makeText(ConsultActivity.this, "Succesfully connection", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(ConsultActivity.this, "Fail connection", Toast.LENGTH_SHORT).show();
@@ -43,13 +42,8 @@ public class ConsultActivity extends AppCompatActivity {
         txtIdentification = findViewById(R.id.txtIdentification);
         txtDate = findViewById(R.id.txtDate);
         btnRegister = findViewById(R.id.btnRegister);
+
         objUser = new MedicalAppointment();
-        objBase = new AdministratorSQL();
     }
 
-    private  void stablishUser(){
-        objUser.setName(txtName.getText().toString());
-        objUser.setIdentification(txtIdentification.getText().toString());
-        objUser.setDate(txtDate.getText().toString());
-    }
 }

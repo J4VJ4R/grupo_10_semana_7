@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.example.app_50510.setup.ServiceLocator;
 
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import grupo10.medicalappointments.model.entities.Doctor;
 import grupo10.medicalappointments.model.entities.MedicalAppointment;
@@ -40,10 +42,14 @@ public class RegisterActivity
 
     private Doctor selectedDoctor;
 
+    private Date selectedDate;
+
     private Button btnRegister;
 
     private DoctorsRepository doctorsRepository = ServiceLocator.getInstance().getDoctorsRepository();
     private MedicalAppointmentsRepository medicalAppointmentsRepository = ServiceLocator.getInstance().getMedicalAppointmentsRepository();
+
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +118,7 @@ public class RegisterActivity
         medicalAppointment.setLastname(txtLastname.getText().toString());
         medicalAppointment.setIdentification(txtIdentification.getText().toString());
         medicalAppointment.setPhone(txtPhone.getText().toString());
-        medicalAppointment.setDate(txtDate.getText().toString());
+        medicalAppointment.setDate(selectedDate);
         medicalAppointment.setDoctor(selectedDoctor.getId());
     }
 
@@ -134,7 +140,7 @@ public class RegisterActivity
                         && txtLastname.getText().length() > 0
                         && txtIdentification.getText().length() > 0
                         && txtPhone.getText().length() > 0
-                        && txtDate.getText().length() > 0
+                        && selectedDate != null
                         && selectedDoctor != null
         );
     }
@@ -151,6 +157,11 @@ public class RegisterActivity
 
     @Override
     public void afterTextChanged(Editable editable) {
+        try {
+            selectedDate = dateFormat.parse(txtDate.getText().toString());
+        } catch (ParseException e) {
+            selectedDate = null;
+        }
         checkSubmitEnabled();
     }
 }

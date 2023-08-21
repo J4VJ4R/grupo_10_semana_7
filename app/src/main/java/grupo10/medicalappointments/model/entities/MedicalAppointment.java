@@ -1,12 +1,14 @@
 package grupo10.medicalappointments.model.entities;
 
+import java.util.Date;
+
 public class MedicalAppointment {
     private  String name;
     private int id;
     private String lastname;
     private String identification;
     private String phone;
-    private String date;
+    private Date date;
     private int doctor;
 
     public String getName() {
@@ -49,13 +51,12 @@ public class MedicalAppointment {
         this.phone = phone;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public String setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
-        return date;
     }
 
     public int getDoctor() {
