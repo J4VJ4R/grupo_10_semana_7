@@ -1,8 +1,8 @@
 package grupo10.medicalappointments.model.repositories.memory;
 
-import java.util.Collection;
 import java.util.stream.Stream;
 
+import grupo10.medicalappointments.model.Promise;
 import grupo10.medicalappointments.model.entities.Doctor;
 import grupo10.medicalappointments.model.exceptions.NotFoundException;
 import grupo10.medicalappointments.model.exceptions.SaveFailedException;
@@ -26,8 +26,8 @@ public class DoctorsRepository_Memory implements DoctorsRepository {
     }
 
     @Override
-    public Stream<Doctor> getAll() {
-        return MemoryStorage.getAllDoctors().stream();
+    public Promise<Stream<Doctor>> getAll() {
+        return Promise.resolve(MemoryStorage.getAllDoctors().stream());
     }
 
     public Doctor getById(int id) throws NotFoundException {

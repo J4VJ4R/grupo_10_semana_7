@@ -17,7 +17,9 @@ import com.example.app_50510.setup.ServiceLocator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import grupo10.medicalappointments.model.entities.Doctor;
 import grupo10.medicalappointments.model.entities.MedicalAppointment;
@@ -57,17 +59,25 @@ public class RegisterActivity
         setContentView(R.layout.activity_register);
         inicializar_componentes();
 
-        Doctor[] doctors = doctorsRepository.getAll().toArray(Doctor[]::new);
-
-        ArrayAdapter<Doctor> doctorArrayAdapter = new ArrayAdapter<>(
-                this,
-                com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
-                doctors
-        );
-        doctorArrayAdapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
-
-        doctorSpinner.setAdapter(doctorArrayAdapter);
+        doctorSpinner.setEnabled(false);
         doctorSpinner.setOnItemSelectedListener(this);
+
+        doctorsRepository.getAll()
+                .then(doctors -> {
+                    ArrayAdapter<Doctor> doctorArrayAdapter = new ArrayAdapter<>(
+                            this,
+                            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+                            doctors.toArray(Doctor[]::new)
+                    );
+                    doctorArrayAdapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
+
+                    doctorSpinner.setAdapter(doctorArrayAdapter);
+                    doctorSpinner.setEnabled(true);
+                })
+                .catched(e -> {
+                    System.err.println(e);
+                    Toast.makeText(RegisterActivity.this, "No se pudieron cargar los doctores", Toast.LENGTH_SHORT).show();
+                });
 
         btnRegister.setOnClickListener(v -> {
             try {
