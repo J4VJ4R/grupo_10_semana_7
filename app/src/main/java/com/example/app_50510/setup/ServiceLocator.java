@@ -25,8 +25,8 @@ public class ServiceLocator {
     }
 
     public DoctorsRepository getDoctorsRepository() {
-        return new DoctorsRepository_Memory();
-        // return new DoctorsRepository_Http();
+        // return new DoctorsRepository_Memory();
+        return new DoctorsRepository_Http();
     }
 
     public MedicalAppointmentsRepository getMedicalAppointmentsRepository() {

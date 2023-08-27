@@ -46,6 +46,11 @@ public final class Promise<T> {
         return new Promise<>((a, r) -> a.run(value));
     }
 
+    public static Promise reject(Exception value) {
+        return new Promise<>((a, r) -> r.run(value));
+    }
+
+
     public Promise(PromiseAction<T> promiseAction) {
         state = State.Running;
 

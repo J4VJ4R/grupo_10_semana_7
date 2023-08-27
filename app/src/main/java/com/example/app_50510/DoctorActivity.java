@@ -32,18 +32,16 @@ public class DoctorActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(v -> {
             stablishUser();
 
-            try {
-                doctorsRepository.add(doctor);
-                clearComponents();
-
-                Toast.makeText(DoctorActivity.this, "Doctor saved successfully", Toast.LENGTH_SHORT).show();
-            } catch (SaveFailedException e) {
-                Toast.makeText(DoctorActivity.this, "Failed to save doctor", Toast.LENGTH_SHORT).show();
-            }
+            doctorsRepository.add(doctor)
+                    .then(d -> {
+                        clearComponents();
+                        Toast.makeText(DoctorActivity.this, "Doctor saved successfully", Toast.LENGTH_SHORT).show();
+                    })
+                    .catched(e -> Toast.makeText(DoctorActivity.this, "Failed to save doctor", Toast.LENGTH_SHORT).show());
         });
     }
 
-    private void clearComponents(){
+    private void clearComponents() {
         txtName.setText("");
         txtSpeciality.setText("");
         doctor = new Doctor();
@@ -51,14 +49,14 @@ public class DoctorActivity extends AppCompatActivity {
         txtName.requestFocus();
     }
 
-    private void inicializar_componentes(){
+    private void inicializar_componentes() {
         txtName = findViewById(R.id.txtName);
         txtSpeciality = findViewById(R.id.txtSpeciality);
         btnRegister = findViewById(R.id.btnRegister);
         doctor = new Doctor();
     }
 
-    private  void stablishUser(){
+    private void stablishUser() {
         doctor.setName(txtName.getText().toString());
         doctor.setSpecialty(txtSpeciality.getText().toString());
     }

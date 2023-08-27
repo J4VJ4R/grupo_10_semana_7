@@ -9,9 +9,9 @@ import grupo10.medicalappointments.model.exceptions.NotFoundException;
 import grupo10.medicalappointments.model.exceptions.SaveFailedException;
 
 public interface DoctorsRepository {
-    public void add(Doctor doctor) throws SaveFailedException;
+    public Promise add(Doctor doctor);
 
     public Promise<Stream<Doctor>> getAll();
 
-    public Doctor getById(int id) throws NotFoundException;
+    public Promise<Doctor> getById(int id);
 }

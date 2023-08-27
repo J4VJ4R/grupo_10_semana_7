@@ -21,8 +21,9 @@ public class DoctorsRepository_Memory implements DoctorsRepository {
     }
 
     @Override
-    public void add(Doctor doctor) throws SaveFailedException {
+    public Promise add(Doctor doctor) {
         MemoryStorage.addDoctor(doctor);
+        return Promise.resolve(doctor);
     }
 
     @Override
@@ -30,11 +31,15 @@ public class DoctorsRepository_Memory implements DoctorsRepository {
         return Promise.resolve(MemoryStorage.getAllDoctors().stream());
     }
 
-    public Doctor getById(int id) throws NotFoundException {
-        return MemoryStorage.getAllDoctors()
+    public Promise<Doctor> getById(int id) {
+        Doctor foundDoctor = MemoryStorage.getAllDoctors()
                 .stream()
                 .filter(d -> d.getId() == id)
                 .findFirst()
-                .orElseThrow(() -> new NotFoundException());
+                .orElse(null);
+
+        return foundDoctor != null
+                ? Promise.resolve(foundDoctor)
+                : Promise.reject(new NotFoundException());
     }
 }

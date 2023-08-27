@@ -74,14 +74,17 @@ public class ConsultActivity extends AppCompatActivity {
 
     private void renderAppointment(MedicalAppointment appointment) {
         txtPatientFullName.setText(appointment.getName() + " " + appointment.getLastname());
-        try {
-            Doctor doctor = doctorsRepository.getById(appointment.getDoctor());
-            txtDoctorName.setText(doctor.getName());
-            txtDoctorSpeciality.setText(doctor.getSpecialty());
-        } catch (NotFoundException e) {
-            txtDoctorName.setText("N/A");
-            txtDoctorSpeciality.setText("N/A");
-        }
+        doctorsRepository.getById(appointment.getDoctor())
+                .then(doctor -> {
+                    doctorsRepository.getById(appointment.getDoctor());
+                    txtDoctorName.setText(doctor.getName());
+                    txtDoctorSpeciality.setText(doctor.getSpecialty());
+                })
+                .catched(e -> {
+                    txtDoctorName.setText("N/A");
+                    txtDoctorSpeciality.setText("N/A");
+                });
+
         txtAppointmentDate.setText(dateFormat.format(appointment.getDate()));
     }
 
