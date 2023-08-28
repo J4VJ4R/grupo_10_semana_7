@@ -46,16 +46,16 @@ public class ConsultActivity extends AppCompatActivity {
             try {
                 clearAppointment();
                 String identification = txtPatientIdentification.getText().toString();
-                MedicalAppointment appointment = medicalAppointmentsRepository.getNextByIdentificationNumber(identification);
-
-                if (appointment != null) {
-                    renderAppointment(appointment);
-                } else {
-                    Toast.makeText(
+                medicalAppointmentsRepository.getNextByIdentificationNumber(identification)
+                        .then(appointment -> renderAppointment(appointment))
+                        .catched(e -> {
+                            System.err.println(e);
+                            Toast.makeText(
                                     ConsultActivity.this,
                                     "No se encontró ninguna cita para '" + identification + "'",
-                                    Toast.LENGTH_SHORT).show();
-                }
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        });
             } catch (Exception e) {
                 Toast.makeText(ConsultActivity.this, "Ocurrió un error", Toast.LENGTH_SHORT).show();
             }

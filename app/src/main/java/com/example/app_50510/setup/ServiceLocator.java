@@ -6,6 +6,7 @@ import java.util.List;
 import grupo10.medicalappointments.model.repositories.DoctorsRepository;
 import grupo10.medicalappointments.model.repositories.MedicalAppointmentsRepository;
 import grupo10.medicalappointments.model.repositories.http.DoctorsRepository_Http;
+import grupo10.medicalappointments.model.repositories.http.MedicalAppointmentsRepository_Http;
 import grupo10.medicalappointments.model.repositories.memory.DoctorsRepository_Memory;
 import grupo10.medicalappointments.model.repositories.memory.MedicalAppointmentsRepository_Memory;
 
@@ -30,6 +31,7 @@ public class ServiceLocator {
     }
 
     public MedicalAppointmentsRepository getMedicalAppointmentsRepository() {
-        return new MedicalAppointmentsRepository_Memory();
+        // return new MedicalAppointmentsRepository_Memory();
+        return new MedicalAppointmentsRepository_Http();
     }
 }
